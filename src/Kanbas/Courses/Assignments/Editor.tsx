@@ -113,8 +113,16 @@ export default function AssignmentEditor() {
             </table>
             <hr />
                 <div>
-                    <button id="wd-cancel" type="button"> Cancel </button>
-                    <button id="wd-save" type="button"> Save </button>
+                    <button id="wd-cancel" type="button">
+                        <a href="#/Kanbas/Courses/1234/Assignments/">
+                            Cancel
+                        </a>
+                    </button>
+                    <button id="wd-save" type="button">
+                        <a href="#/Kanbas/Courses/1234/Assignments/">
+                            Save
+                        </a>
+                    </button>
                 </div>
         </div>
     );}
