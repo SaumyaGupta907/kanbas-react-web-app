@@ -4,7 +4,7 @@ import AssignControlButtons from  "./AssignControlButtons";
 import { BsGripVertical } from "react-icons/bs";
 
 import "./styles.css";
-import {FaBook, FaPlus, FaSearch} from "react-icons/fa";
+import {FaBars, FaBook, FaPlus, FaSearch} from "react-icons/fa";
 
 export default function Assignments() {
     return (

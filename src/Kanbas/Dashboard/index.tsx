@@ -9,7 +9,6 @@ export default function Dashboard() {
         <div className="card">
           <a className="wd-dashboard-course-link text-decoration-none text-dark"
              href="#/Kanbas/Courses/1234/Home">
-
                     <img src="/images/course_logo.jpeg" width="100%" />
                     <div  className="card-body">
                     <h5 className="wd-dashboard-course-title card-title">
@@ -27,7 +26,6 @@ export default function Dashboard() {
         <div className="card">
           <a className="wd-dashboard-course-link text-decoration-none text-dark"
              href="#/Kanbas/Courses/1234/Home">
-
                     <img src="/images/course_logo.jpeg" width="100%" />
                     <div  className="card-body">
                     <h5 className="wd-dashboard-course-title card-title">
