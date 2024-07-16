@@ -41,6 +41,7 @@ export default function Courses() {
                 <span className="mx-2">{'>'}</span>
                 <span>{section}</span>
             </Breadcrumb>
+            <hr />
             <div className="row">
                 <div className="col-2"><CoursesNavigation /></div>
                 <div className="col-9 p-3">
