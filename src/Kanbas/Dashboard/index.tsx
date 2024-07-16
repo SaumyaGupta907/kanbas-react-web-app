@@ -1,3 +1,4 @@
+
 export default function Dashboard() {
     return (
         <div id="wd-dashboard">
@@ -15,8 +16,9 @@ export default function Dashboard() {
                  CS1234 React JS
               </h5>
                         <p className="card-text">
-                            Full Stack software developer
+                            202410_1 Fall 2023 Semester Full Term
                         </p>
+                        
                         <button className="btn btn-primary"> Go </button>
                     </div>
                     </a>
@@ -32,25 +34,7 @@ export default function Dashboard() {
                  CS1234 React JS
               </h5>
                         <p className="card-text">
-                            Full Stack software developer
-                        </p>
-                        <button className="btn btn-primary"> Go </button>
-                    </div>
-                    </a>
-                    </div>
-                </div>
-                <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-        <div className="card">
-          <a className="wd-dashboard-course-link text-decoration-none text-dark"
-             href="#/Kanbas/Courses/1234/Home">
-
-                    <img src="/images/course_logo.jpeg" width="100%" />
-                    <div  className="card-body">
-                    <h5 className="wd-dashboard-course-title card-title">
-                 CS1234 React JS
-              </h5>
-                        <p className="card-text">
-                            Full Stack software developer
+                        202410_2 Fall 2023 Semester Full Term
                         </p>
                         <button className="btn btn-primary"> Go </button>
                     </div>
@@ -68,7 +52,7 @@ export default function Dashboard() {
                  CS1234 React JS
               </h5>
                         <p className="card-text">
-                            Full Stack software developer
+                        202410_3 Fall 2023 Semester Full Term
                         </p>
                         <button className="btn btn-primary"> Go </button>
                     </div>
@@ -86,7 +70,7 @@ export default function Dashboard() {
                  CS1234 React JS
               </h5>
                         <p className="card-text">
-                            Full Stack software developer
+                        202410_4 Fall 2023 Semester Full Term
                         </p>
                         <button className="btn btn-primary"> Go </button>
                     </div>
@@ -104,7 +88,7 @@ export default function Dashboard() {
                  CS1234 React JS
               </h5>
                         <p className="card-text">
-                            Full Stack software developer
+                        202410_5 Fall 2023 Semester Full Term
                         </p>
                         <button className="btn btn-primary"> Go </button>
                     </div>
@@ -122,7 +106,25 @@ export default function Dashboard() {
                  CS1234 React JS
               </h5>
                         <p className="card-text">
-                            Full Stack software developer
+                        202410_6 Fall 2023 Semester Full Term
+                        </p>
+                        <button className="btn btn-primary"> Go </button>
+                    </div>
+                    </a>
+                    </div>
+                </div>
+                <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+        <div className="card">
+          <a className="wd-dashboard-course-link text-decoration-none text-dark"
+             href="#/Kanbas/Courses/1234/Home">
+
+                    <img src="/images/course_logo.jpeg" width="100%" />
+                    <div  className="card-body">
+                    <h5 className="wd-dashboard-course-title card-title">
+                 CS1234 React JS
+              </h5>
+                        <p className="card-text">
+                        202410_7 Fall 2023 Semester Full Term
                         </p>
                         <button className="btn btn-primary"> Go </button>
                     </div>
