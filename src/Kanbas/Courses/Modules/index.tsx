@@ -9,7 +9,7 @@ import { BsGripVertical } from "react-icons/bs";
           <ModulesControls /><br /><br /><br /><br />
           <div>
             <ul id="wd-modules" className="list-group rounded-0">
-              <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
+              <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray" style={{borderLeft: "solid thick green"}}>
                 <div className="wd-title p-3 ps-2 bg-secondary">
                   <BsGripVertical className="me-2 fs-3" />
                     Week 1
@@ -43,7 +43,7 @@ import { BsGripVertical } from "react-icons/bs";
                   </li>
                 </ul>
               </li>
-              <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
+              <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray" style={{borderLeft: "solid thick green"}}>
                 <div className="wd-title p-3 ps-2 bg-secondary">
                   <BsGripVertical className="me-2 fs-3" />
                     Week 2

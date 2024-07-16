@@ -175,6 +175,9 @@ export default function Courses() {
                 <span>{section}</span>
                 <hr />
             </Breadcrumb>
+            <div className="d-none d-md-block">
+                <hr />
+            </div>
             <div className="row">
                 <div className="col-2"><CoursesNavigation /></div>
                 <div className="col-9 p-3">
