@@ -1,0 +1,66 @@
+a {
+    text-decoration: none;
+    color: red;
+}
+
+.red-color, a:hover {
+    color: red;
+}
+
+.fa-link {
+    color: #8fbc8f;
+}
+
+.fa-circle-check, .fa-check-circle {
+    color: #2E8B57;
+}
+
+.normal-text {
+    font-weight: 400;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.green-border-left {
+    border-left: 5px solid green;
+}
+
+.close {
+    background-color: white;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.modules-section .list-group-item {
+    border-bottom: 0.2px solid gray;
+    border-right: 0.2px solid gray;
+}
+
+.black-navbar {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* This ensures vertical alignment */
+    padding: 10px;
+}
+
+.modal-content a {
+    color: red;
+}
+
+.modal-sidebar i {
+    color: red;
+}
+
+.modules-text {
+    text-align: center;
+}
+
+.icon {
+    font-size: 24px;
+}
