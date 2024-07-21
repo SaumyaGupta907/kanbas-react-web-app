@@ -3,20 +3,30 @@ import Modules from "./Modules";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import Home from "./Home";
-import {Navigate, Route, Routes, useLocation} from "react-router";
+import {Navigate, Route, Routes, useLocation, useParams} from "react-router";
 import {FaAlignJustify, FaBars, FaChevronDown, FaGlasses, FaQuestion} from "react-icons/fa";
-import { Breadcrumb } from 'react-bootstrap';
 import Grades from "./Grades";
+import { courses } from "../Database";
 
 import './styles.css';
 
 export default function Courses() {
-    let { pathname } = useLocation();
+    const { id } = useParams();
+    const course = courses.find((course) => course._id === id);
+    const { pathname } = useLocation();
+
+    console.log('Course:', course, 'CID:', id);
+    console.log('Courses List:', courses);
+    console.log("params",useParams());
+
+    /* let { pathname } = useLocation();
     let s = pathname.split("/")
     let subsection = "";
     let pathnameSubsection = "";
     let el = pathname.split("/");
     let section = s[s.length - 1];
+
+    
 
     if(pathname.includes("Assignments")) {
         subsection = section === "Assignments" ? "" : "Assignments";
@@ -25,22 +35,28 @@ export default function Courses() {
 
     if(section === "Home") {
         section = "Modules";
-    }
+    } 
 
-    section = decodeURIComponent(section);
+    section = decodeURIComponent(section); */
 
     return (
         <div id="wd-courses">
+            <h2 className="text-danger">
+        <FaAlignJustify className="me-4 fs-4 mb-1" />
+        {course && course.name} &gt; {pathname.split("/")[4]}
+      </h2>
+            
             <div className="d-md-none">
                 <nav className="navbar navbar-dark bg-black">
                     <div
                         className="container-fluid black-navbar d-flex justify-content-between align-items-center">
+                                                
                         <button className="navbar-toggler" type="button" data-bs-toggle="modal"
                                 data-bs-target="#navbarContentModal">
                             <FaBars />
                         </button>
-                        <div className="d-flex align-items-center mx-auto">
-                            <div className="modules-text">CS5610 <br /> Modules</div>
+                        <div className="d-flex align-items-center mx-auto text-danger">
+                            HIIIIIIIIIIIIIIIIIIIaa
                         </div>
                         <FaGlasses className="mx-2"/>
                         <button className="navbar-toggler" type="button" data-bs-toggle="modal"
@@ -162,19 +178,8 @@ export default function Courses() {
                     </div>
                 </div>
             </div>
-            <Breadcrumb className="d-none d-md-block">
-                <FaBars style={{color: "Red"}} className="mx-3 mt-1"></FaBars>
-                <span style={{color: "Red"}}>CS5610</span>
-                {(subsection.length > 0) && (
-                    <span className="mx-2">{'>'}</span>
-                )}
-                {(subsection.length > 0) && (
-                    <span style={{color: "Red"}}>{subsection}</span>
-                )}
-                <span className="mx-2">{'>'}</span>
-                <span>{section}</span>
-                <hr />
-            </Breadcrumb>
+            
+        
             <div className="d-none d-md-block">
                 <hr />
             </div>

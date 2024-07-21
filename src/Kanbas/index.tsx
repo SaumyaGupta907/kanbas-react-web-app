@@ -6,7 +6,7 @@ import "./styles.css";
 
 export default function Kanbas() {
     return (
-        <div id="wd-kanbas">
+        <div id="wd-kanbas" >
             <KanbasNavigation/>
             <div className="wd-main-content-offset p-3">
                 <Routes>
@@ -17,6 +17,7 @@ export default function Kanbas() {
                         <Route path="Courses" element={<Courses/>}/>
                         <Route path="Calendar" element={<h1>Calendar</h1>} />
                             <Route path="Inbox" element={<h1>Inbox</h1>} />
+                        
                 </Routes>
             </div>
      </div>
