@@ -1,8 +1,19 @@
 import './styles.css';
-import {FaGear} from "react-icons/fa6";
-import {FaFileExport, FaFileImport, FaFilter, FaSearch} from "react-icons/fa";
+import { FaGear } from "react-icons/fa6";
+import { FaFileExport, FaFileImport, FaFilter, FaSearch } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import * as db from "../../Database";
 
 export default function Grades() {
+    const { id } = useParams();
+
+    const enrollments = db.enrollments.filter(enrollment => enrollment.course === id);
+    const students = enrollments.map(enrollment => {
+        const user = db.users.find(user => user._id === enrollment.user);
+        return { ...user, enrollmentId: enrollment._id };
+    });
+    const assignments = db.assignments.filter(assignment => assignment.course === id);
+
     return (
         <div>
             <div className="top-buttons">
@@ -15,16 +26,14 @@ export default function Grades() {
                     <p className="fw-bold">Student Names</p>
                     <div className="search-container">
                         <FaSearch className="fas search-icon"/>
-                        <input type="text" className="search-input form-control"
-                               placeholder="Search Students" />
+                        <input type="text" className="search-input form-control" placeholder="Search Students" />
                     </div>
                 </div>
                 <div className="col-6">
                     <p className="fw-bold">Assignment Names</p>
                     <div className="search-container">
                         <FaSearch className="fas search-icon"/>
-                        <input type="text" className="search-input form-control"
-                               placeholder="Search Assignments" />
+                        <input type="text" className="search-input form-control" placeholder="Search Assignments" />
                     </div>
                 </div>
             </div>
@@ -34,44 +43,26 @@ export default function Grades() {
             <div className="table-responsive">
                 <table className="table table-bordered table-striped table-striped-red text-center">
                     <thead>
-                    <tr></tr>
+                        <tr>
+                            <th>Student Name</th>
+                            {assignments.map(assignment => (
+                                <th key={assignment._id}>
+                                    {assignment.title}<br />
+                                    <span className="text-muted">Out of {assignment.points}</span>
+                                </th>
+                            ))}
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th>Student Name</th>
-                        <th>A1 SETUP<br /><span className="text-muted">Out of 100</span></th>
-                        <th>A2 HTML<br /><span className="text-muted">Out of 100</span></th>
-                        <th>A3 CSS<br/><span className="text-muted">Out of 100</span></th>
-                        <th>A4 BOOTSTRAP<br/><span className="text-muted">Out of 100</span></th>
-                    </tr>
-                    <tr>
-                        <td className="student-name">Jane Adams</td>
-                        <td>100</td>
-                        <td><input type="number" value="97" /></td>
-                        <td>100</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td className="student-name">Alice Wonderland</td>
-                        <td>100</td>
-                        <td>91</td>
-                        <td>100</td>
-                        <td>90</td>
-                    </tr>
-                    <tr>
-                        <td className="student-name">Bob Marrot</td>
-                        <td><input type="number" value="90" /></td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td className="student-name">Darth Vader</td>
-                        <td>100</td>
-                        <td><input type="number" value="91" /></td>
-                        <td>100</td>
-                        <td><input type="number" value="89" /></td>
-                    </tr>
+                        {students.map(student => (
+                            <tr key={student._id}>
+                                <td className="student-name">{student.firstName} {student.lastName}</td>
+                                {assignments.map(assignment => {
+                                    const grade = db.grades.find(grade => grade.assignment === assignment._id && grade.student === student._id);
+                                    return <td key={assignment._id}>{grade ? grade.grade : "N/A"}</td>;
+                                })}
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

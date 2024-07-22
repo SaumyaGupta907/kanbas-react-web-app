@@ -1,11 +1,20 @@
+import { useParams, Link } from "react-router-dom";
+import * as db from "../../Database";
 import './styles.css';
 
 export default function AssignmentEditor() {
+    const { id } = useParams();  // Use 'id' as the route parameter
+    const assignment = db.assignments.find(a => a._id === id);
+
+    if (!assignment) {
+        return <div>Assignment not found</div>;
+    }
+
     return (
         <div>
             <label>Assignment Name</label>
-            <input type="text" className="form-control mb-4" value="A1" />
-            <textarea className="form-control resize">This assignment just a dummy assignment edit page. Keep it posted.</textarea>
+            <input type="text" className="form-control mb-4" value={assignment.title} readOnly />
+            <textarea className="form-control resize">This assignment is a dummy assignment edit page. Keep it posted.</textarea>
             <div className="row p-3">
                 <div className="col-10">
                     <div className="row my-4">
@@ -13,9 +22,9 @@ export default function AssignmentEditor() {
                             <label>Points</label>
                         </div>
                         <div className="col-8">
-                            <input type="text" className="form-control" value="100" />
-                            </div>
+                            <input type="text" className="form-control" value={assignment.points} readOnly />
                         </div>
+                    </div>
                     <div className="row my-4">
                         <div className="col-4 text-end">
                             <label>Assignment Group</label>
@@ -38,13 +47,10 @@ export default function AssignmentEditor() {
                                 <option selected>Percentage</option>
                             </select>
                             <div className="form-check my-2">
-                                <input className="form-check-input" type="checkbox"
-                                       value="" id="flexCheckDefault" />
-                                    <label className="form-check-label"
-                                           htmlFor="flexCheckDefault">
-                                        Do not count this assignment towards final
-                                        grade.
-                                    </label>
+                                <input className="form-check-input" type="checkbox" id="flexCheckDefault" />
+                                <label className="form-check-label" htmlFor="flexCheckDefault">
+                                    Do not count this assignment towards final grade.
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -60,29 +66,16 @@ export default function AssignmentEditor() {
                                 <div className="my-2">
                                     <p className="fw-bold">Online Entry Options</p>
                                     <div className="form-check">
-                                        <input className="form-check-input"
-                                               type="checkbox" />
-                                            <label className="form-check-label">Text
-                                                Entry</label><br/>
-                                            <input className="form-check-input"
-                                                   type="checkbox" checked />
-                                                <label className="form-check-label">Website
-                                                    URL</label><br/>
-                                                <input className="form-check-input"
-                                                       type="checkbox" />
-                                                    <label className="form-check-label">Media
-                                                        Recordings</label><br/>
-                                                    <input className="form-check-input"
-                                                           type="checkbox" />
-                                                        <label
-                                                            className="form-check-label">Student
-                                                            Annotation</label><br/>
-                                                        <input
-                                                            className="form-check-input"
-                                                            type="checkbox" />
-                                                            <label
-                                                                className="form-check-label">File
-                                                                Uploads</label>
+                                        <input className="form-check-input" type="checkbox" />
+                                        <label className="form-check-label">Text Entry</label><br/>
+                                        <input className="form-check-input" type="checkbox" checked />
+                                        <label className="form-check-label">Website URL</label><br/>
+                                        <input className="form-check-input" type="checkbox" />
+                                        <label className="form-check-label">Media Recordings</label><br/>
+                                        <input className="form-check-input" type="checkbox" />
+                                        <label className="form-check-label">Student Annotation</label><br/>
+                                        <input className="form-check-input" type="checkbox" />
+                                        <label className="form-check-label">File Uploads</label>
                                     </div>
                                 </div>
                             </div>
@@ -103,19 +96,16 @@ export default function AssignmentEditor() {
                                 </div>
                                 <div className="my-2">
                                     <p className="fw-bold">Due</p>
-                                    <input type="date" className="form-control"
-                                           value="2024-05-17" />
+                                    <input type="date" className="form-control" value={assignment.dueDate} readOnly />
                                 </div>
                                 <div className="row my-2">
                                     <div className="col-6">
                                         <p className="fw-bold">Available from</p>
-                                        <input type="date" className="form-control"
-                                               value="2024-05-10" />
+                                        <input type="date" className="form-control" value={assignment.availableDate} readOnly />
                                     </div>
                                     <div className="col-6">
                                         <p className="fw-bold">Until</p>
-                                        <input type="date" className="form-control"
-                                               value="2024-05-17" />
+                                        <input type="date" className="form-control" value={assignment.dueDate} readOnly />
                                     </div>
                                 </div>
                             </div>
@@ -127,10 +117,11 @@ export default function AssignmentEditor() {
             <div className="p-1">
                 <input className="form-check-input" type="checkbox" />
                 <input className="form-check-input" type="checkbox" />
-                    <div className="float-end">
-                        <a href="#/Kanbas/Courses/1234/Assignments" className="btn btn-light">Cancel</a>
-                        <a href="#/Kanbas/Courses/1234/Assignments" className="btn btn-danger">Save</a>
-                    </div>
+                <div className="float-end">
+                    <Link to={`/Kanbas/Courses/${id}/Assignments`} className="btn btn-light">Cancel</Link>
+                    <button className="btn btn-danger">Save</button>
+                </div>
             </div>
         </div>
-    );}
+    );
+}
