@@ -1,4 +1,4 @@
-import {useParams, Link, useLocation} from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import * as db from "../../Database";
 import './styles.css';
 
@@ -10,11 +10,18 @@ export default function AssignmentEditor() {
         return <div>Assignment not found</div>;
     }
 
+    const course = db.courses.find(c => c._id === assignment.course);
+
+    if (!course) {
+        return <div>Course not found</div>;
+    }
+
     return (
         <div>
             <label>Assignment Name</label>
             <input type="text" className="form-control mb-4" value={assignment.title} readOnly />
-            <textarea className="form-control resize">This assignment is a dummy assignment edit page. Keep it posted.</textarea>
+            <textarea className="form-control resize" value={`This is an assignment on ${assignment.title}.`}  />
+
             <div className="row p-3">
                 <div className="col-10">
                     <div className="row my-4">

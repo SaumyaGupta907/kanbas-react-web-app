@@ -15,6 +15,12 @@ export default function Courses() {
     const course = courses.find((course) => course._id === id);
     const { pathname } = useLocation();
 
+
+    const notActive = "list-group-item text-danger border border-0";
+    const active = "list-group-item active border border-0";
+
+    const links = ["Home", "Modules", "Piazza", "Zoom", "Assignments", "Quizzes", "Grades"];
+
     return (
         <div id="wd-courses">
             <div className="d-none d-md-block">
@@ -125,36 +131,26 @@ export default function Courses() {
                                 aria-label="Close">
                             <div className="float-end" aria-hidden="true">&times;</div>
                         </button>
+                        <div>
                         <ul className="modal-sidebar list-group no-border">
-                            <li className="list-group-item"><i className="fa-solid fa-house"></i><a
-                                href="#/Kanbas/Courses/1234/Home"><span className="mx-1">Home</span></a></li>
-                            <li className="list-group-item"><i
-                                className="fa-solid fa-network-wired"></i><a href="#"><span
-                                className="mx-1">Modules</span></a></li>
-                            <li className="list-group-item"><i className="fa-solid fa-wifi"></i><a
-                                href="#"><span className="mx-1">Piazza</span></a></li>
-                            <li className="list-group-item"><i className="fa-solid fa-wifi"></i><a
-                                href="#"><span className="mx-1">Zoom Meetings</span></a></li>
-                            <li className="list-group-item"><i
-                                className="fa-regular fa-pen-to-square"></i><a
-                                href="#/Kanbas/Courses/1234/Assignments"><span
-                                className="mx-1">Assignments</span></a></li>
-                            <li className="list-group-item"><i className="fa-solid fa-rocket"></i><a
-                                href="#"><span className="mx-1">Quizzes</span></a></li>
-                            <li className="list-group-item"><i className="fa-solid fa-book"></i><a
-                                href="#/Kanbas/Courses/1234/Grades"><span className="mx-1">Grades</span></a></li>
-                            <li className="list-group-item"><i
-                                className="fa-regular fa-file-lines"></i><a href="#"><span
-                                className="mx-1">People</span><i
-                                className="fa-regular fa-eye-slash"></i></a></li>
-                            <li className="list-group-item"><i
-                                className="fa-regular fa-file-lines"></i><a href="#"><span
-                                className="mx-1">Settings</span><i
-                                className="fa-regular fa-eye-slash"></i></a></li>
-                        </ul>
-                    </div>
+    {links.map((link) => (
+        <li className={`list-group-item ${pathname.includes(link) ? 'active' : ''}`} key={link}>
+            <a 
+                id={`wd-course-${link.toLowerCase()}-link`} 
+                href={`#/Kanbas/Courses/${id}/${link}`}
+                className={pathname.includes(link) ? 'active' : 'inactive'}
+            >
+                <span className="mx-1">{link}</span>
+            </a>
+        </li>
+    ))}
+</ul>
+
                 </div>
             </div>
+            </div>
+            </div>
+
             <div className="d-none d-md-block">
                 <hr />
             </div>
@@ -171,5 +167,6 @@ export default function Courses() {
                     </Routes>
                 </div>
             </div>
-        </div>
+        
+        </div> 
     );}
