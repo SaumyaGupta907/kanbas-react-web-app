@@ -11,6 +11,21 @@ export default function Assignments() {
     const { id } = useParams();  // Get course ID from URL
     const assignments = db.assignments.filter((assignment) => assignment.course === id);
 
+    // @ts-ignore
+    const extractMonthAndDay = (dateString) => {
+        const date = new Date(dateString);
+
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        const day = date.getDate();
+        const monthName = monthNames[date.getMonth()];
+
+        return `${monthName} ${day} at 12:00am`;
+    }
+
     return (
         <div id="wd-assignments">
             <div className="my-3">
@@ -49,9 +64,9 @@ export default function Assignments() {
                                                 {assignment.title}
                                             </Link>
                                             <p>
-                                                <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> {assignment.availableDate} | <br />
+                                                <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> {extractMonthAndDay(assignment.availableDate)} | <br />
                                                 <b>Due </b>
-                                                <span className="text-muted">{assignment.dueDate} | {assignment.points}pts</span>
+                                                <span className="text-muted">{extractMonthAndDay(assignment.dueDate)} | {assignment.points}pts</span>
                                             </p>
                                         </div>
                                         <div className="col-2 mt-4">

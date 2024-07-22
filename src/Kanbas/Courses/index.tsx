@@ -15,37 +15,14 @@ export default function Courses() {
     const course = courses.find((course) => course._id === id);
     const { pathname } = useLocation();
 
-    console.log('Course:', course, 'CID:', id);
-    console.log('Courses List:', courses);
-    console.log("params",useParams());
-
-    /* let { pathname } = useLocation();
-    let s = pathname.split("/")
-    let subsection = "";
-    let pathnameSubsection = "";
-    let el = pathname.split("/");
-    let section = s[s.length - 1];
-
-    
-
-    if(pathname.includes("Assignments")) {
-        subsection = section === "Assignments" ? "" : "Assignments";
-        section = subsection === "" ? "Assignments" : "A1";
-    }
-
-    if(section === "Home") {
-        section = "Modules";
-    } 
-
-    section = decodeURIComponent(section); */
-
     return (
         <div id="wd-courses">
-            <h2 className="text-danger">
-        <FaAlignJustify className="me-4 fs-4 mb-1" />
-        {course && course.name} &gt; {pathname.split("/")[4]}
-      </h2>
-            
+            <div className="d-none d-md-block">
+                <h2 className="text-danger">
+                    <FaAlignJustify className="me-4 fs-4 mb-1" />
+                    {course && course.name} &gt; {pathname.split("/")[4]}
+                </h2>
+            </div>
             <div className="d-md-none">
                 <nav className="navbar navbar-dark bg-black">
                     <div
@@ -56,7 +33,7 @@ export default function Courses() {
                             <FaBars />
                         </button>
                         <div className="d-flex align-items-center mx-auto text-danger">
-                            HIIIIIIIIIIIIIIIIIIIaa
+                            <p>{course && course._id}<br/>{pathname.split("/")[4]}</p>
                         </div>
                         <FaGlasses className="mx-2"/>
                         <button className="navbar-toggler" type="button" data-bs-toggle="modal"
@@ -76,7 +53,7 @@ export default function Courses() {
                         <ul className="flex-column" style={{listStyle: "none"}}>
                             <li className="my-4">
                                 <li className="my-4">
-                                    <a href="./dashboard/index.html" className="nav-link">
+                                    <a href="#/Kanbas/Dashboard" className="nav-link">
                                         <span className="mx-2">Dashboard</span>
                                     </a>
                                 </li>
@@ -178,8 +155,6 @@ export default function Courses() {
                     </div>
                 </div>
             </div>
-            
-        
             <div className="d-none d-md-block">
                 <hr />
             </div>

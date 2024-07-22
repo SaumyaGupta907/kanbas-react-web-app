@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import {useParams, Link, useLocation} from "react-router-dom";
 import * as db from "../../Database";
 import './styles.css';
 
@@ -118,8 +118,8 @@ export default function AssignmentEditor() {
                 <input className="form-check-input" type="checkbox" />
                 <input className="form-check-input" type="checkbox" />
                 <div className="float-end">
-                    <Link to={`/Kanbas/Courses/${id}/Assignments`} className="btn btn-light">Cancel</Link>
-                    <button className="btn btn-danger">Save</button>
+                    <Link to={`/Kanbas/Courses/${assignment.course}/Assignments`} className="btn btn-light">Cancel</Link>
+                    <Link to={`/Kanbas/Courses/${assignment.course}/Assignments`} className="btn btn-danger">Save</Link>
                 </div>
             </div>
         </div>
