@@ -14,6 +14,10 @@ export default function Grades() {
     });
     const assignments = db.assignments.filter(assignment => assignment.course === id);
 
+    console.log(id);
+    console.log(enrollments);
+    console.log(students);
+
     return (
         <div>
             <div className="top-buttons">
@@ -59,7 +63,7 @@ export default function Grades() {
                                 <td className="student-name">{student.firstName} {student.lastName}</td>
                                 {assignments.map(assignment => {
                                     const grade = db.grades.find(grade => grade.assignment === assignment._id && grade.student === student._id);
-                                    return <td key={assignment._id}>{grade ? grade.grade : "N/A"}</td>;
+                                    return <td key={assignment._id}>{grade ? grade.grade : 0}</td>;
                                 })}
                             </tr>
                         ))}
