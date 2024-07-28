@@ -6,10 +6,23 @@ import AssignmentControlButtons from "./AssignmentControlButtons";
 import AssignControlButtons from "./AssignControlButtons";
 
 import "./styles.css";
+import {useDispatch, useSelector} from "react-redux";
+
+import {deleteAssignment, setAssignment, setAssignmentCourse} from "./reducer";
+import {useEffect} from "react";
 
 export default function Assignments() {
     const { id } = useParams();  // Get course ID from URL
-    const assignments = db.assignments.filter((assignment) => assignment.course === id);
+    let { assignments } = useSelector((state: any) => state.assignmentsReducer);
+    const dispatch = useDispatch();
+
+    assignments = assignments.filter((assignment: any) => {
+        return assignment.course === id;
+    });
+
+    useEffect(() => {
+        dispatch(setAssignmentCourse(id));
+    }, []);
 
     // @ts-ignore
     const extractMonthAndDay = (dateString) => {
@@ -34,7 +47,10 @@ export default function Assignments() {
                     <input type="text" className="search-input" placeholder="Search ...." />
                     <div className="float-end">
                         <button className="btn btn-light">+Group</button>
-                        <button className="btn btn-danger mx-2">+ Assignment</button>
+                        <Link to={`/Kanbas/Courses/${id}/Assignments/-1`}
+                              className="btn btn-danger mx-2">
+                            + Assignment
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -52,15 +68,17 @@ export default function Assignments() {
                             </div>
                         </div>
                         <ul className="wd-assignments list-group rounded-0">
-                            {assignments.map((assignment) => (
-                                <li key={assignment._id} className="wd-assignment list-group-item p-3 ps-1">
+                            {assignments.map((assignment: any) => (
+                                <li key={assignment._id} className="wd-assignment list-group-item p-3   ps-1">
                                     <div className="row">
                                         <div className="col-2 mt-4">
                                             <BsGripVertical className="me-2 fs-3" />
                                             <FaBook style={{ color: "green" }} />
                                         </div>
                                         <div className="col-8 assignment-content">
-                                            <Link className="wd-assignment-link" to={`/Kanbas/Courses/${id}/Assignments/${assignment._id}`}>
+                                            <Link className="wd-assignment-link"
+                                                  onClick={() => dispatch(setAssignment({...assignment}))}
+                                                  to={`/Kanbas/Courses/${id}/Assignments/${assignment._id}`}>
                                                 {assignment.title}
                                             </Link>
                                             <p>
@@ -70,7 +88,9 @@ export default function Assignments() {
                                             </p>
                                         </div>
                                         <div className="col-2 mt-4">
-                                            <AssignControlButtons />
+                                            <AssignControlButtons
+                                                assignmentId={assignment._id}
+                                                deleteAssignment={(assignmentId) => {dispatch(deleteAssignment(assignmentId))}}/>
                                         </div>
                                     </div>
                                 </li>

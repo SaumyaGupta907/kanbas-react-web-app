@@ -10,7 +10,7 @@ import { courses } from "../Database";
 
 import './styles.css';
 
-export default function Courses() {
+export default function Courses({courses}: {courses: any[];}) {
     const { id } = useParams();
     const course = courses.find((course) => course._id === id);
     const { pathname } = useLocation();
@@ -33,7 +33,7 @@ export default function Courses() {
                 <nav className="navbar navbar-dark bg-black">
                     <div
                         className="container-fluid black-navbar d-flex justify-content-between align-items-center">
-                                                
+
                         <button className="navbar-toggler" type="button" data-bs-toggle="modal"
                                 data-bs-target="#navbarContentModal">
                             <FaBars />
@@ -135,8 +135,8 @@ export default function Courses() {
                         <ul className="modal-sidebar list-group no-border">
     {links.map((link) => (
         <li className={`list-group-item ${pathname.includes(link) ? 'active' : ''}`} key={link}>
-            <a 
-                id={`wd-course-${link.toLowerCase()}-link`} 
+            <a
+                id={`wd-course-${link.toLowerCase()}-link`}
                 href={`#/Kanbas/Courses/${id}/${link}`}
                 className={pathname.includes(link) ? 'active' : 'inactive'}
             >
@@ -150,7 +150,6 @@ export default function Courses() {
             </div>
             </div>
             </div>
-
             <div className="d-none d-md-block">
                 <hr />
             </div>
@@ -167,6 +166,5 @@ export default function Courses() {
                     </Routes>
                 </div>
             </div>
-        
-        </div> 
+        </div>
     );}
