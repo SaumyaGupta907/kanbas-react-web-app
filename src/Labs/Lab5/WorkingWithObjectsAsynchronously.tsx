@@ -74,7 +74,7 @@ export default function WorkingWithArraysAsynchronously() {
             <TiDelete onClick={() => deleteTodo(todo)} className="text-danger float-end me-2 fs-3" id="wd-delete-todo" />
             <input type="checkbox" className="form-check-input me-2"
                    defaultChecked={todo.completed} onChange={(e) => updateTodo({ ...todo, completed: e.target.checked }) } />
-                    {!todo.editing ? ( todo.title ) : (
+                    {!todo.editing ? ( <span/> ) : (
                 <input className="form-control w-50 float-start" defaultValue={todo.title}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
