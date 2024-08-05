@@ -8,23 +8,25 @@ import AssignControlButtons from "./AssignControlButtons";
 import "./styles.css";
 import {useDispatch, useSelector} from "react-redux";
 
-import {deleteAssignment, setAssignment, addAssignment} from "./reducer";
+import {deleteAssignment, setAssignments, setAssignment, addAssignment, setAssignmentCourse} from "./reducer";
 import {useEffect} from "react";
+import {deleteModule} from "../Modules/reducer";
 
 export default function Assignments() {
     const { id } = useParams();  // Get course ID from URL
     let { assignments } = useSelector((state: any) => state.assignmentsReducer);
     const dispatch = useDispatch();
 
-    const createAssignment = async (assignment: any) => {
-        const newAssignment = await client.createAssignment(id as string, assignment);
-        dispatch(addAssignment(newAssignment));
-      };
+
+    const removeAssignment = async (assignmentId: string) => {
+        await client.deleteAssignment(assignmentId);
+        dispatch(deleteAssignment(assignmentId));
+    };
 
       
     const fetchAssignments = async () => {
         const modules = await client.findAssignmentsForCourse(id as string);
-        dispatch(setAssignment(modules));
+        dispatch(setAssignments(modules));
       };
       useEffect(() => {
         fetchAssignments();
@@ -35,7 +37,10 @@ export default function Assignments() {
         return assignment.course === id;
     });
 
-    
+    useEffect(() => {
+        dispatch(setAssignmentCourse(id));
+    }, [])
+
 
     // @ts-ignore
     const extractMonthAndDay = (dateString) => {
@@ -103,7 +108,7 @@ export default function Assignments() {
                                         <div className="col-2 mt-4">
                                             <AssignControlButtons
                                                 assignmentId={assignment._id}
-                                                deleteAssignment={(assignmentId) => {dispatch(deleteAssignment(assignmentId))}}/>
+                                                deleteAssignment={(assignmentId) => {removeAssignment(assignmentId)}}/>
                                         </div>
                                     </div>
                                 </li>

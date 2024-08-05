@@ -1,5 +1,5 @@
 import {useParams, Link, useNavigate, useLocation} from "react-router-dom";
-import * as db from "../../Database";
+import * as client from "./client";
 import './styles.css';
 
 import { useSelector, useDispatch } from "react-redux";
@@ -16,11 +16,14 @@ export default function AssignmentEditor() {
     }
 
     const handleSave = async () => {
-        console.log("Saving assignment data.");
         if(id === "-1") {
-            dispatch(addAssignment(assignment));
+            await client.createAssignment(assignment.course, assignment).then((assignment) => {
+                dispatch(addAssignment(assignment));
+            });
         } else {
-            dispatch(updateAssignment(assignment));
+            await client.updateAssignment(assignment).then(() => {
+                dispatch(updateAssignment(assignment));
+            })
         }
     }
 
