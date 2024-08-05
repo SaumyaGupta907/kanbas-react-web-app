@@ -5,15 +5,19 @@ import { FaPencil } from "react-icons/fa6";
 import { FaTrash, FaPlusCircle } from 'react-icons/fa';
 export default function WorkingWithArraysAsynchronously() {
   const [todos, setTodos] = useState<any[]>([]);
+  const [errorMessage, setErrorMessage] = useState(null);
   const editTodo = (todo: any) => {
     const updatedTodos = todos.map(
       (t) => t.id === todo.id ? { ...todo, editing: true } : t );
     setTodos(updatedTodos);
   };
   const updateTodo = async (todo: any) => {
+    try {
     await client.updateTodo(todo);
     setTodos(todos.map((t) => (t.id === todo.id ? todo : t)));
-  };
+  } catch (error: any) {
+    setErrorMessage(error.response.data.message);
+  }};
 
   const createTodo = async () => {
     const todos = await client.createTodo();
@@ -34,9 +38,15 @@ export default function WorkingWithArraysAsynchronously() {
     setTodos(updatedTodos);
   };
   const deleteTodo = async (todo: any) => {
+    try{
     await client.deleteTodo(todo);
     const newTodos = todos.filter((t) => t.id !== todo.id);
     setTodos(newTodos);
+} catch (error: any) {
+    console.log(error);
+    setErrorMessage(error.response.data.message);
+  }
+
   };
 
 
@@ -46,6 +56,9 @@ export default function WorkingWithArraysAsynchronously() {
   return (
     <div id="wd-asynchronous-arrays">
       <h3>Working with Arrays Asynchronously</h3>
+      {errorMessage && (
+        <div id="wd-todo-error-message" className="alert alert-danger mb-2 mt-2">{errorMessage}</div>
+      )}
       <h4>Todos
       <FaPlusCircle onClick={createTodo} className="text-success float-end fs-3"
                          id="wd-create-todo" />
