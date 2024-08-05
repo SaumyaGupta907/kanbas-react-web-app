@@ -1,14 +1,14 @@
 import { FaSearch, FaPlus, FaBook } from "react-icons/fa";
 import { BsGripVertical } from "react-icons/bs";
 import { useParams, Link } from "react-router-dom";
-import * as db from "../../Database";
+import * as client from "./client";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import AssignControlButtons from "./AssignControlButtons";
 
 import "./styles.css";
 import {useDispatch, useSelector} from "react-redux";
 
-import {deleteAssignment, setAssignment, setAssignmentCourse} from "./reducer";
+import {deleteAssignment, setAssignment, addAssignment} from "./reducer";
 import {useEffect} from "react";
 
 export default function Assignments() {
@@ -16,13 +16,26 @@ export default function Assignments() {
     let { assignments } = useSelector((state: any) => state.assignmentsReducer);
     const dispatch = useDispatch();
 
+    const createAssignment = async (assignment: any) => {
+        const newAssignment = await client.createAssignment(id as string, assignment);
+        dispatch(addAssignment(newAssignment));
+      };
+
+      
+    const fetchAssignments = async () => {
+        const modules = await client.findAssignmentsForCourse(id as string);
+        dispatch(setAssignment(modules));
+      };
+      useEffect(() => {
+        fetchAssignments();
+      }, []);
+    
+
     assignments = assignments.filter((assignment: any) => {
         return assignment.course === id;
     });
 
-    useEffect(() => {
-        dispatch(setAssignmentCourse(id));
-    }, []);
+    
 
     // @ts-ignore
     const extractMonthAndDay = (dateString) => {
