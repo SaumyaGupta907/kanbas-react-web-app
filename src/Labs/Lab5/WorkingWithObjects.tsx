@@ -89,5 +89,14 @@ export default function WorkingWithObjects() {
         <input className="form-control w-75" id="wd-module-name" value={module.name} onChange={(e) =>
           setModule({ ...module, name: e.target.value })}/>
         <hr />
+
+        <h4>Update Module Description</h4>
+        <a id="wd-update-module-name" className="btn btn-primary float-end" href={`${MODULE_API_URL}/description/${module.description}`}
+           target="_blank" onClick={() => setModule({...module, description: module.description})}>
+            Update Module Description
+        </a>
+        <input className="form-control w-75" id="wd-module-description" value={module.description} onChange={(e) =>
+            setModule({ ...module, description: e.target.value })}/>
+        <hr />
     </div>
 );}
