@@ -40,6 +40,7 @@ export default function WorkingWithObjects() {
         Get Title
       </a><hr/>
 
+
       <h4>Update Module Name</h4>
       <a id="wd-update-module-name"
          className="btn btn-primary float-end"

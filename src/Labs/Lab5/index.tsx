@@ -6,6 +6,7 @@ import Module from "./module";
 import WorkingWithArrays from "./WorkingWithArrays";
 import HttpClient from "./HttpClient";
 import WorkingWithObjectsAsynchronously from "./WorkingWithObjectsAsynchronously";
+import WorkingWithArraysAsynchronously from "./WorkingWithArraysAsynchronously";
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 export default function Lab5() {
     return (
@@ -20,11 +21,15 @@ export default function Lab5() {
         <EnvironmentVariables />
         <PathParameters />
         <QueryParameters />
-        <WorkingWithObjects />
+        
         <Module />
         <WorkingWithArrays />
+        
         <HttpClient />
+        <WorkingWithObjects />
         <WorkingWithObjectsAsynchronously />
+        <WorkingWithArraysAsynchronously />
+        
       </div>
     );
   }
