@@ -10,7 +10,7 @@ export default function CoursesNavigation() {
     const notActive = "list-group-item text-danger border border-0";
     const active = "list-group-item active border border-0";
 
-    const links = ["Home", "Modules", "Piazza", "Zoom", "Assignments", "Quizzes", "Grades"];
+    const links = ["Home", "Modules", "Piazza", "Zoom", "Assignments", "Quizzes", "Grades", "People"];
 
     return (
         <div className="col-lg-2 col-md-3 d-none d-md-block">

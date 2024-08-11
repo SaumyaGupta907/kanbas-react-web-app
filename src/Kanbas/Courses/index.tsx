@@ -7,6 +7,7 @@ import {Navigate, Route, Routes, useLocation, useParams} from "react-router";
 import {FaAlignJustify, FaBars, FaChevronDown, FaGlasses, FaQuestion} from "react-icons/fa";
 import Grades from "./Grades";
 import { courses } from "../Database";
+import PeopleTable from "../../Courses/People/Table";
 
 import './styles.css';
 
@@ -163,6 +164,8 @@ export default function Courses({courses}: {courses: any[];}) {
                         <Route path="Grades" element={<Grades />} />
                         <Route path="Assignments" element={<Assignments/>} />
                         <Route path="Assignments/:id" element={<AssignmentEditor/>} />
+                        <Route path="People" element={<PeopleTable />} />
+                        <Route path="People/:uid" element={<PeopleTable />} />
                     </Routes>
                 </div>
             </div>
