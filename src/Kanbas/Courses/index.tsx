@@ -7,9 +7,10 @@ import {Navigate, Route, Routes, useLocation, useParams} from "react-router";
 import {FaAlignJustify, FaBars, FaChevronDown, FaGlasses, FaQuestion} from "react-icons/fa";
 import Grades from "./Grades";
 import { courses } from "../Database";
-import PeopleTable from "../../Courses/People/Table";
+import PeopleTable from "./People/Table";
 
 import './styles.css';
+import PeopleDetails from "./People/Details";
 
 export default function Courses({courses}: {courses: any[];}) {
     const { id } = useParams();

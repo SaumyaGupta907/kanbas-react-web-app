@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import * as client from "./client";
-import PeopleDetails from "../../Kanbas/Courses/People/Details";
 import { Link, useParams } from "react-router-dom";
+import PeopleDetails from "./Details";
 
 export default function PeopleTable() {
   const [users, setUsers] = useState<any[]>([]);
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
-  const { cid } = useParams();
+  const {id} = useParams();
   
   const filterUsersByName = async (name: string) => {
     setName(name);
@@ -38,9 +38,10 @@ export default function PeopleTable() {
   }, []);
   return (
     <div id="wd-people-table">
-              <input onChange={(e) => filterUsersByName(e.target.value)} placeholder="Search people"
+      <PeopleDetails />
+      <input onChange={(e) => filterUsersByName(e.target.value)} placeholder="Search people"
              className="form-control float-start w-25 me-2 wd-filter-by-name" />
-              <select value={role} onChange={(e) =>filterUsersByRole(e.target.value)}
+      <select value={role} onChange={(e) =>filterUsersByRole(e.target.value)}
               className="form-select float-start w-25 wd-select-role" >
         <option value="">All Roles</option>        <option value="STUDENT">Students</option>
         <option value="TA">Assistants</option>     <option value="FACULTY">Faculty</option>
@@ -54,12 +55,12 @@ export default function PeopleTable() {
         <tbody>
           {users.map((user: any) => (
             <tr key={user._id}>
-              <Link to={`/Kanbas/Courses/${cid}/People/${user._id}`} >
-              
-              <td className="wd-full-name text-nowrap" >
-                <span className="wd-first-name">{user.firstName}</span>
-                <span className="wd-last-name">{user.lastName}</span>
-              </td> </Link>
+                <td className="wd-full-name text-nowrap" >
+                  <Link to={`/Kanbas/Courses/${id}/People/${user._id}`} >
+                    <span className="wd-first-name">{user.firstName}</span>
+                    <span className="wd-last-name">{user.lastName}</span>
+                  </Link>
+                </td>
               <td className="wd-login-id">{user.loginId}</td>
               <td className="wd-section">{user.section}</td>
               <td className="wd-role">{user.role}</td>
