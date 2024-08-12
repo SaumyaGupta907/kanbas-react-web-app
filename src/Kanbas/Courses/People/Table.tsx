@@ -39,6 +39,9 @@ export default function PeopleTable() {
       password: "password123",
       section: "S101",
       role: "STUDENT",
+      loginId:`ID${users.length + 1}`,
+      lastActivity:"4567",
+      totalActivity:"45465"
     });
     setUsers([...users, user]);
   };
