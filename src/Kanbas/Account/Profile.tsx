@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./reducer";
+
+import "./styles.css";
+
 export default function Profile() {
   const [profile, setProfile] = useState<any>({});
   const navigate = useNavigate();
@@ -29,26 +32,26 @@ export default function Profile() {
     <div className="wd-profile-screen">
       <h1>Profile</h1>
       {profile && (
-        <div>
-          <input className="wd-username" value={profile.username}
+        <div className="form-group profile">
+          <input className="form-control wd-username" value={profile.username}
                  onChange={(e) => setProfile({ ...profile, username:  e.target.value })}/>
-          <input className="wd-password" value={profile.password}
+          <input className="form-control  wd-password" value={profile.password}
                  onChange={(e) => setProfile({ ...profile, password:  e.target.value })}/>
-          <input className="wd-firstname" value={profile.firstName}
+          <input className="form-control  wd-firstname" placeholder="firstName" value={profile.firstName}
                  onChange={(e) => setProfile({ ...profile, firstName: e.target.value })}/>
-          <input className="wd-lastname" value={profile.lastName}
+          <input className="form-control  wd-lastname" placeholder="lastName" value={profile.lastName}
                  onChange={(e) => setProfile({ ...profile, lastName:  e.target.value })}/>
-          <input className="wd-dob" value={profile.dob}
+          <input className="form-control wd-dob" value={profile.dob} placeholder="dob"
                  onChange={(e) => setProfile({ ...profile, dob: e.target.value })} type="date"/>
-          <input className="wd-email" value={profile.email}
+          <input className="form-control wd-email" value={profile.email} placeholder="email"
                  onChange={(e) => setProfile({ ...profile, email: e.target.value })}/>
-          <select className="wd-role" onChange={(e) => setProfile({ ...profile, role: e.target.value })}>
+          <select className="form-control wd-role" onChange={(e) => setProfile({ ...profile, role: e.target.value })}>
             <option value="USER">User</option>            <option value="ADMIN">Admin</option>
             <option value="FACULTY">Faculty</option>      <option value="STUDENT">Student</option>
           </select>
-          <button onClick={signout} className="wd-signout-btn btn btn-danger w-100">
-    Sign out
-  </button>
+          <button onClick={signout} className="wd-signout-btn btn btn-danger w-100 my-2 rounded">
+            Sign out
+          </button>
         </div>
       )}
     </div>
