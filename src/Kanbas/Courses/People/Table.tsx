@@ -9,7 +9,6 @@ export default function PeopleTable() {
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
   const {id} = useParams();
-  const timestamp = Date.now();  
   const filterUsersByName = async (name: string) => {
     setName(name);
     if (name) {
@@ -34,7 +33,6 @@ export default function PeopleTable() {
 
   const createUser = async () => {
     const user = await client.createUser({
-      _id: {timestamp},
       firstName: "New",
       lastName: `User${users.length + 1}`,
       username: `newuser${Date.now()}`,
