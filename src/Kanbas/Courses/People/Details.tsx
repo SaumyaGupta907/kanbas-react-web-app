@@ -129,9 +129,9 @@ export default function PeopleDetails({ fetchUsers }: { fetchUsers: () => void; 
               }
             }}
           >
-            <option value="student">Student</option>
-            <option value="faculty">Faculty</option>
-            <option value="assistant">Assistant</option>
+            <option value="STUDENT">Student</option>
+            <option value="FACULTY">Faculty</option>
+            <option value="ASSISTANT">Assistant</option>
           </select>
         )}
       </div>
