@@ -13,6 +13,7 @@ export default function Signin() {
     try {
         const currentUser = await client.signin(credentials);
         let d = new Date(currentUser["dob"]);
+        currentUser["dob"] = d.toISOString().split('T')[0];
         dispatch(setCurrentUser(currentUser));
         navigate("/Kanbas/Account/Profile");
       } catch (err: any) {
